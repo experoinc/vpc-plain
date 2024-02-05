@@ -31,12 +31,21 @@ Resources:
       Tags:
       - Key: Name
         Value: !Ref CidrBlock
+  VpcCidrBlock:
+    Type: 'AWS::EC2::VPCCidrBlock'
+    Properties:
+      AmazonProvidedIpv6CidrBlock: true
+      VpcId: !Ref Vpc
   InternetGateway:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
       - Key: Name
         Value: !Ref CidrBlock
+  EgressOnlyInternetGateway:
+    Type: 'AWS::EC2::EgressOnlyInternetGateway'
+    Properties:
+      VpcId: !Ref Vpc
   VpcGatewayAttachment:
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
@@ -46,7 +55,7 @@ Outputs:
   ModuleId:
     Value: 'vpc-plain'
   ModuleVersion:
-    Value: '1.0.0'
+    Value: '2.0.0'
   StackName:
     Value: !Ref 'AWS::StackName'
   Id:
@@ -61,3 +70,7 @@ Outputs:
     Value: !Ref InternetGateway
     Export:
       Name: !Sub '${AWS::StackName}-InternetGatewayId'
+  EgressOnlyInternetGatewayId:
+    Value: !Ref EgressOnlyInternetGateway
+    Export:
+      Name: !Sub '${AWS::StackName}-EgressOnlyInternetGatewayId'
