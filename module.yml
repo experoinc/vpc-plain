@@ -55,7 +55,7 @@ Outputs:
   ModuleId:
     Value: 'vpc-plain'
   ModuleVersion:
-    Value: '2.0.0'
+    Value: '2.0.1'
   StackName:
     Value: !Ref 'AWS::StackName'
   Id:
@@ -66,6 +66,10 @@ Outputs:
     Value: !Ref CidrBlock
     Export:
       Name: !Sub '${AWS::StackName}-CidrBlock'
+  CidrBlockIPv6:
+    Value: !Select [0, !GetAtt 'Vpc.Ipv6CidrBlocks']
+    Export:
+      Name: !Sub '${AWS::StackName}-CidrBlockIPv6'
   InternetGatewayId:
     Value: !Ref InternetGateway
     Export:
