@@ -30,7 +30,7 @@ Resources:
       InstanceTenancy: default
       Tags:
       - Key: Name
-        Value: !Ref CidrBlock
+        Value: 'was-portal-vpc'
   VpcCidrBlock:
     Type: 'AWS::EC2::VPCCidrBlock'
     Properties:
